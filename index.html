@@ -35,8 +35,8 @@
                 var a = $("<button>");
                 // Adding a class of topic-btn to the button - NECESSARY?
                 // a.addClass("topic-btn");
-                // // Adding a data-attribute - NECESSARY?
-                // a.attr("data-name", topics[i]);
+                // Adding a data-attribute
+                a.attr("data-name", topics[i]);
                 // Providing the initial button text
                 a.text(topics[i]);
                 // Adding the button to the buttons-view div
@@ -45,6 +45,63 @@
         };
 
         renderButtons();
+
+        // displayGifs fn re-renders the HTML to display appropriate content
+        function displayGifs() {
+
+            var topics = $(this).attr("data-name");
+            var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=0vvAH89sd0za9eZ8qOpv23HRBi9Y7edf&tag=" + topics + "&limit=10&rating=pg-13";
+
+        //     // AJAX call for the specific topic button clicked
+        //     $.ajax({
+        //         url: queryURL,
+        //         method: "GET"
+        //     }).then(function (response) {
+
+        //         // Creating a div to hold the movie
+        //         var movieDiv = $("<div class='movie'>");
+
+        //         // Storing the rating data
+        //         var rating = response.Rated;
+
+        //         // Creating an element to have the rating displayed
+        //         var pOne = $("<p>").text("Rating: " + rating);
+
+        //         // Displaying the rating
+        //         movieDiv.append(pOne);
+
+        //         // Storing the release year
+        //         var released = response.Released;
+
+        //         // Creating an element to hold the release year
+        //         var pTwo = $("<p>").text("Released: " + released);
+
+        //         // Displaying the release year
+        //         movieDiv.append(pTwo);
+
+        //         // Storing the plot
+        //         var plot = response.Plot;
+
+        //         // Creating an element to hold the plot
+        //         var pThree = $("<p>").text("Plot: " + plot);
+
+        //         // Appending the plot
+        //         movieDiv.append(pThree);
+
+        //         // Retrieving the URL for the image
+        //         var imgURL = response.Poster;
+
+        //         // Creating an element to hold the image
+        //         var image = $("<img>").attr("src", imgURL);
+
+        //         // Appending the image
+        //         movieDiv.append(image);
+
+        //         // Putting the entire movie above the previous movies
+        //         $("#movies-view").prepend(movieDiv);
+        //     });
+
+        // }
 // <!-- 
 //         // Event listener for our cat-button
 //         $("#button").on("click", function () {
