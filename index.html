@@ -15,7 +15,7 @@
     <div id="buttons-view"></div>
 
     <!-- GIFs go here -->
-    <div id="images">
+    <div id="gif-images">
     </div>
 
     <!-- JavaScript -->
@@ -46,62 +46,53 @@
 
         renderButtons();
 
-        // displayGifs fn re-renders the HTML to display appropriate content
-        function displayGifs() {
+        // Button-click event listener for all button elements
+        //Fn writes relevant GIFs to HTML
+        $("button").on("click", function () {
 
             var topics = $(this).attr("data-name");
-            var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=0vvAH89sd0za9eZ8qOpv23HRBi9Y7edf&tag=" + topics + "&limit=10&rating=pg-13";
+            var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=0vvAH89sd0za9eZ8qOpv23HRBi9Y7edf&tag=" + topics + "&limit=10&rating";
 
-        //     // AJAX call for the specific topic button clicked
-        //     $.ajax({
-        //         url: queryURL,
-        //         method: "GET"
-        //     }).then(function (response) {
+            // AJAX GET request
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
 
-        //         // Creating a div to hold the movie
-        //         var movieDiv = $("<div class='movie'>");
+                .then(function (response) {
 
-        //         // Storing the rating data
-        //         var rating = response.Rated;
+                // Storing an array of the GIF results in a variable
+                var results = response.data;
+                console.log(results);
 
-        //         // Creating an element to have the rating displayed
-        //         var pOne = $("<p>").text("Rating: " + rating);
+                    // Looping through the 10 GIFs grabbed with AJAX
+                    for (var i = 0; i < results.length; i++) {
 
-        //         // Displaying the rating
-        //         movieDiv.append(pOne);
+                        // Creating a div with the class "item"
+                        var gifDiv = $("<div class='item'>");
 
-        //         // Storing the release year
-        //         var released = response.Released;
+                        // Storing the result item's rating
+                        var rating = results[i].rating;
 
-        //         // Creating an element to hold the release year
-        //         var pTwo = $("<p>").text("Released: " + released);
+                        // Creating a paragraph tag with the result item's rating
+                        var p = $("<p>").text("Rating: " + rating);
 
-        //         // Displaying the release year
-        //         movieDiv.append(pTwo);
+                        // Creating an image tag
+                        var gifImage = $("<img>");
 
-        //         // Storing the plot
-        //         var plot = response.Plot;
+                        // Giving the image tag a src attribute - fixed height
+                        gifImage.attr("src", results[i].images.fixed_height.url);
 
-        //         // Creating an element to hold the plot
-        //         var pThree = $("<p>").text("Plot: " + plot);
+                        // Appending each p and image to the gifDiv
+                        gifDiv.append(p);
+                        gifDiv.append(personImage);
 
-        //         // Appending the plot
-        //         movieDiv.append(pThree);
+                        // Prepending the gifDiv to the relevant div in the HTML
+                        $("#gif-images").prepend(gifDiv);
+                    }
+                })
+            });
 
-        //         // Retrieving the URL for the image
-        //         var imgURL = response.Poster;
-
-        //         // Creating an element to hold the image
-        //         var image = $("<img>").attr("src", imgURL);
-
-        //         // Appending the image
-        //         movieDiv.append(image);
-
-        //         // Putting the entire movie above the previous movies
-        //         $("#movies-view").prepend(movieDiv);
-        //     });
-
-        // }
 // <!-- 
 //         // Event listener for our cat-button
 //         $("#button").on("click", function () {
