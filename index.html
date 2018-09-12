@@ -4,12 +4,30 @@
 <head>
     <meta charset="utf-8">
     <title>GifTastic!</title>
+    <!--CSS Reset-->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
-    <h1>The Ronald Ulysses Swanson Gif Grabber</h1>
+    <div class="jumbotron">
+        <div class="container">
+        </div>
+    </div>
 
-    <p>Now with 97% more Ron Swanson! Apologies to the good people at <a href="https://www.nbc.com/parks-and-recreation">NBC</a>.</p>
+    <h1>The Ronald Ulysses Swanson Gif Grabber &trade;</h1>
+
+    <p>Ron is a simple man. He likes pretty, dark-haired women, breakfast food,
+        and bringing the government crumbling to the ground. Click below to get your
+        hot little hands on some Ron GIFs. With apologies to the good people at 
+        <a href="https://www.nbc.com/parks-and-recreation">NBC</a>.
+    </p>
 
     <!-- Rendered Buttons get dumped here  -->
     <div id="buttons-view"></div>
@@ -52,7 +70,7 @@
 
             var topics = $(this).attr("data-name");
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=0vvAH89sd0za9eZ8qOpv23HRBi9Y7edf&limit=10&rating=pg";
-            
+
             // ?api_key=0vvAH89sd0za9eZ8qOpv23HRBi9Y7edf&tag=" + topics + "&limit=10&rating";
 
             // AJAX GET request
@@ -63,38 +81,43 @@
 
                 .then(function (response) {
 
-                // Storing an array of the GIF results in a variable
-                var results = response.data;
-                console.log(results);
+                    // Storing an array of the GIF results in a variable
+                    var results = response.data;
+                    console.log(results);
 
                     // Looping through the 10 GIFs grabbed with AJAX
                     for (var i = 0; i < results.length; i++) {
 
-                        // Creating a div with the class "item"
-                        var gifDiv = $("<div class='item'>");
+                        // Only taking action if the photo has an appropriate rating
+                        if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
 
-                        // Storing the result item's rating
-                        var rating = results[i].rating;
+                            // Creating a div with the class "item"
+                            var gifDiv = $("<div class='item'>");
 
-                        // Creating a paragraph tag with the result item's rating
-                        var p = $("<p>").text("Rating: " + rating);
+                            // Storing the result item's rating
+                            var rating = results[i].rating;
 
-                        // Creating an image tag
-                        var gifImage = $("<img>");
+                            // Creating a paragraph tag with the result item's rating
+                            var p = $("<p>").text("Rating: " + rating);
 
-                        // Giving the image tag a src attribute - fixed height
-                        gifImage.attr("src", results[i].images.fixed_height.url);
+                            // Creating an image tag
+                            var gifImage = $("<img>");
 
-                        // Appending each p and image to the gifDiv
-                        gifDiv.append(p);
-                        gifDiv.append(gifImage);
+                            // Giving the image tag a src attribute - fixed height
+                            gifImage.attr("src", results[i].images.fixed_height.url);
 
-                        // Prepending the gifDiv to the relevant div in the HTML
-                        $("#gif-images").prepend(gifDiv);
+                            // Appending each p and image to the gifDiv
+                            gifDiv.append(p);
+                            gifDiv.append(gifImage);
+
+                            // Prepending the gifDiv to the relevant div in the HTML
+                            $("#gif-images").prepend(gifDiv);
+                        }
                     }
-                })
-            });
+                });
+        });
+
     </script>
-    
+
 </body>
 </html>
