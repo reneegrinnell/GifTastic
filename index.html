@@ -16,24 +16,51 @@
 </head>
 
 <body>
-    <div class="jumbotron">
-        <div class="container">
+
+    <div class="container">
+
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <h2>The Ronald Ulysses Swanson Gif Grabber &trade;</h2>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#speeches">GIF ME!</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">GitHub</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">LINK????</a>
+            </li>
+        </ul>
+
+        <div class="jumbotron"></div>
+
+        <h2 id=speeches>"Well, I am not usually one for speeches. So, goodbye."</h2>
+
+        <p>
+            Ron is a simple man. He likes pretty, dark-haired women, breakfast food, and bringing the government crumbling to the ground.
+            Click the buttons below to get your hot little hands on some Ron GIFs, and add new buttons if you like.
+        </p>
+
+        <!-- Rendered buttons get dumped here  -->
+        <div id="buttons-view"></div>
+
+        <!-- Users can type additional button suggestions and add them here -->
+        <form id="movie-form">
+            <label for="movie-input">Add More Ron-Related Things</label>
+            <input type="text" id="movie-input">
+            <br>
+            <input id="add-movie" type="submit" value="Click to Add!">
+        </form>
+
+        <!-- GIFs go here -->
+        <div id="gif-images">
         </div>
-    </div>
 
-    <h1>The Ronald Ulysses Swanson Gif Grabber &trade;</h1>
-
-    <p>Ron is a simple man. He likes pretty, dark-haired women, breakfast food,
-        and bringing the government crumbling to the ground. Click below to get your
-        hot little hands on some Ron GIFs. With apologies to the good people at 
-        <a href="https://www.nbc.com/parks-and-recreation">NBC</a>.
-    </p>
-
-    <!-- Rendered Buttons get dumped here  -->
-    <div id="buttons-view"></div>
-
-    <!-- GIFs go here -->
-    <div id="gif-images">
+        <p>
+            &copy; Renée Grinnell 2018, with apologies to the good people at <a href="https://www.nbc.com/parks-and-recreation">NBC</a>.
+        </p>
     </div>
 
     <!-- JavaScript -->
@@ -70,8 +97,6 @@
 
             var topics = $(this).attr("data-name");
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=0vvAH89sd0za9eZ8qOpv23HRBi9Y7edf&limit=10&rating=pg";
-
-            // ?api_key=0vvAH89sd0za9eZ8qOpv23HRBi9Y7edf&tag=" + topics + "&limit=10&rating";
 
             // AJAX GET request
             $.ajax({
@@ -120,4 +145,5 @@
     </script>
 
 </body>
+
 </html>

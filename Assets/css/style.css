@@ -7,3 +7,17 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.nav {
+    padding: 20px 0px 20px 0px;
+}
+
+.nav-item, .nav-link {
+    color: black;
+}
+
+.body {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
