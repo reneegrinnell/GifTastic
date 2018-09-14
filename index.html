@@ -47,11 +47,11 @@
         <div id="buttons-view"></div>
 
         <!-- Users can type additional button suggestions and add them here -->
-        <form id="movie-form">
-            <label for="movie-input">Add More Ron-Related Things</label>
-            <input type="text" id="movie-input">
+        <form id="topic-form">
+            <label for="topic-input">Add More Ron-Related Things</label>
+            <input type="text" id="topic-input">
             <br>
-            <input id="add-movie" type="submit" value="Click to Add!">
+            <input id="add-topic" type="submit" value="Click to Add!">
         </form>
 
         <!-- GIFs go here -->
@@ -75,23 +75,15 @@
             // Looping through the array of topics
             for (var i = 0; i < topics.length; i++) {
 
-                // Then dynamicaly generating buttons for each movie in the array with jQuery
-                var a = $("<button>");
-                // Adding a class of topic-btn to the button - NECESSARY?
-                // a.addClass("topic-btn");
-                // Adding a data-attribute
-                a.attr("data-name", topics[i]);
-                // Providing the initial button text
-                a.text(topics[i]);
-                // Adding the button to the buttons-view div
-                $("#buttons-view").append(a);
+                // Calling fn to create new buttons!
+                newButton(topics[i]);
             }
         };
 
         renderButtons();
 
         // Button-click event listener for all button elements
-        //Fn writes relevant GIFs to HTML
+        // Fn writes relevant GIFs to HTML
         $("button").on("click", function () {
 
             var topics = $(this).attr("data-name");
@@ -143,7 +135,27 @@
                 });
         });
 
-    </script>
+        // This function handles events where one button is clicked
+      $("#add-topic").on("click", function(event) {
+        // Preventing the buttons default behavior when clicked (which is submitting a form)
+        event.preventDefault();
+
+        // This line grabs the input from the textbox
+        var input = $("#topic-input").val().trim();
+
+        newButton(input);
+
+    });
+
+    function newButton(topicInput) {
+        // Creating html for the add button
+        var html = '<button data-name="' + topicInput + '">' + topicInput + '</button>';
+
+        // Adding the button to buttons-view div
+        $("#buttons-view").append(html);
+    }
+
+</script>
 
 </body>
 
