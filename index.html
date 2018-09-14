@@ -8,9 +8,8 @@
     <title>GifTastic!</title>
     <!-- Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!--Font Awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-        crossorigin="anonymous">
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
     <!--Custom CSS-->
     <link rel="stylesheet" type="text/css" href="Assets/css/style.css">
 </head>
@@ -21,7 +20,7 @@
 
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <h2>The Ronald Ulysses Swanson Gif Grabber &trade;</h2>
+                <h2>The Ron Swanson Gif Grabber &trade;</h2>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="#speeches">GIF ME!</a>
@@ -36,8 +35,17 @@
         <h2 id=speeches>"Well, I am not usually one for speeches. So, goodbye."</h2>
 
         <p>
-            Ron is a simple man. He likes pretty, dark-haired women, breakfast food, and bringing the government crumbling to the ground.
-            Click the buttons below to get your hot little hands on some Ron GIFs, and add new buttons if you like.
+            Ronald Ulysses Swanson is a simple man. He likes pretty, dark-haired women, breakfast food, and bringing the government crumbling to the ground.
+            He would also really, really hate this website.
+        </p>
+
+        <p>
+            Start by turning on the sweet Ron jam below, if you like. Then click the buttons below to 
+            get your hot little hands on some Ron GIFs, and add new buttons if you like.
+        </p>
+
+        <p>
+            <audio controls="controls"><source src="Assets/audio/ERASE ALL PICTURES OF RON - PARKS AND REC REMIX.mp3" type="audio/mpeg" /></audio>
         </p>
 
         <!-- Rendered buttons get dumped here  -->
@@ -153,7 +161,7 @@
         });
 
         $("body").on("click", ".gif", function () {
-            // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+            
             var state = $(this).attr("data-state");
             // If the clicked image's state is still, update its src attribute to what its data-animate value is.
             // Then, set the image's data-state to animate
@@ -169,7 +177,8 @@
 
         function newButton(topicInput) {
             // Creating html for the add button
-            var html = '<button data-name="' + topicInput + '">' + topicInput + '</button>';
+            var html = '<button data-name="' + topicInput 
+            + '">' + topicInput + '</button>';
 
             // Adding the button to buttons-view div
             $("#buttons-view").append(html);
