@@ -12,7 +12,7 @@
     padding: 20px 0px 20px 0px;
 }
 
-.nav-item, .nav-link {
+.nav-item, .nav-link, a {
     color: black;
 }
 
