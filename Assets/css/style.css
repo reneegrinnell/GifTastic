@@ -22,8 +22,19 @@
     margin-right: auto;
 }
 
+#row1 {
+    background-color: rgba(214, 105, 105, 0.925);
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
 h2 {
     font-family: 'Faster One', sans-serif;
+}
+
+#row2 {
+    background-color:  rgba(105, 189, 214, 0.925);
+    padding: 20px;
 }
 
 button {
