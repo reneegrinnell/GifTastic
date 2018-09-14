@@ -55,8 +55,7 @@
         </form>
 
         <!-- GIFs go here -->
-        <div id="gif-images">
-        </div>
+        <div id="gif-images"></div>
 
         <p>
             &copy; Renée Grinnell 2018, with apologies to the good people at <a href="https://www.nbc.com/parks-and-recreation">NBC</a>.
@@ -97,6 +96,8 @@
 
             var topics = $(this).attr("data-name");
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=0vvAH89sd0za9eZ8qOpv23HRBi9Y7edf&limit=10&rating=pg";
+
+            $("#gif-images").empty();
 
             // AJAX GET request
             $.ajax({
